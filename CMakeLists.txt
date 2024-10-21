@@ -4,6 +4,9 @@ project(CMakeSFMLProject LANGUAGES CXX)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
+# generate compile_commands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+
 include(FetchContent)
 FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
@@ -16,6 +19,7 @@ FetchContent_MakeAvailable(SFML)
 add_executable(main src/main.cpp)
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
+
 
 if(WIN32)
     add_custom_command(
